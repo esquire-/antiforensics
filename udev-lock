@@ -1,0 +1,8 @@
+#!/bin/sh
+logfile=/var/log/udev-lock.log
+user=`ps aux | grep -v root | grep session | head -n 1 | awk '{print $1}'`
+
+# Assumes XFCE desktop
+#echo "Locking system" >> $logfile
+/bin/su ${user} -c "DISPLAY=:0 /usr/bin/xflock4"
+exit
